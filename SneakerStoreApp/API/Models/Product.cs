@@ -1,44 +1,31 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SneakerStoreApp.API.Models;
 
-namespace SneakerStoreApp.API.Models
+namespace API.Models
 {
     public class Product
     {
-        [Key]
         public int Id { get; set; }
+        public string Name { get; set; } = null!;
+        public string? Description { get; set; }
+        public string? SKU { get; set; }
+        public string? BrandName { get; set; }
 
-        [Required]
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-
-        [Required]
-        public string SKU { get; set; }
-
-        [Required]
-        public string BrandName { get; set; }
-
-        [Required]
-        [Range(0, double.MaxValue)]
+        [Column(TypeName = "decimal(10,2)")]
         public decimal RegularPrice { get; set; }
 
+        [Column(TypeName = "decimal(10,2)")]
         public decimal? SalePrice { get; set; }
 
-        [Required]
-        public int StockQuantity { get; set; }
+        public int? StockQuantity { get; set; }
+        public string? MainImageUrl { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
-        [Required]
-        public string MainImageUrl { get; set; }
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-
-        [ForeignKey("Category")]
-        public int CategoryId { get; set; }
-
-        public Category Category { get; set; }
+        public ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
+        public ICollection<ProductVariant> Variants { get; set; } = new List<ProductVariant>();
+        public ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
     }
 }

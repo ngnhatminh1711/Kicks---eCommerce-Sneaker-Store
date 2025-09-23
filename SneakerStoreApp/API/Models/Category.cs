@@ -1,21 +1,17 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace SneakerStoreApp.API.Models
+namespace API.Models
 {
     public class Category
     {
-        [Key]
         public int Id { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         public string? Description { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
 
-        public ICollection<Product> Products { get; set; }
+        public ICollection<Product> Products { get; set; } = new List<Product>();
     }
 }
