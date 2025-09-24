@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SneakerStoreApp.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,5 +15,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.MapControllers();
+
+DbInitializer.InitDb(app);
 
 app.Run();
