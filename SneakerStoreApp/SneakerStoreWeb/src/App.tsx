@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Product } from "./models/product";
 import ProductList from "./components/product/ProductList";
+import Header from "./components/layout/Header.tsx";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -12,7 +13,8 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="container mx-auto">
+      <Header />
       <ProductList products={products} />
     </div>
   );

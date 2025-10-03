@@ -7,7 +7,7 @@ type Props = {
 
 export default function ProductList({ products }: Props) {
     return (
-        <div className="flex flex-row gap-x-[16px]">
+        <div className="container mx-auto flex flex-row gap-x-[16px] flex-nowrap max-w-[1320px]">
             {products.map(product => (
                 <ProductCard key={product.id} product={product} />
             ))}
